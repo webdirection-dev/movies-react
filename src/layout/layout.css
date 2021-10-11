@@ -1,3 +1,13 @@
-/*.container {*/
-/*    */
-/*}*/
+.main__preloader {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.indeterminate, .progress, .input-field{
+    margin: 0;
+}
+
+.container {
+    padding: 0;
+}
