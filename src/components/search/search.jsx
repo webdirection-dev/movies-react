@@ -30,7 +30,7 @@ export default class Search extends Component {
         const {search} = this.state;
 
         return(
-            <div className="row">
+            <div className="row movie__search">
                 <div className="input-field">
                     <input
                         className="validate"
