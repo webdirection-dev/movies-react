@@ -7,7 +7,7 @@ export default class Radio extends Component {
     }
 
     onChangeRadio = (event) => {
-        const {getData, search} = this.props;
+        const {toPutTypeToSearch} = this.props;
         const {name, value} = event.target;
         let valueToState = value;
 
@@ -15,9 +15,9 @@ export default class Radio extends Component {
             [name]: valueToState
         });
 
-        console.log(search, value)
-        // if (value === 'all') getData('all');
-        getData(search, value);
+        let type = value;
+        if (value === 'all') type = null;
+        toPutTypeToSearch(type);
     };
 
     render() {

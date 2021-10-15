@@ -2,17 +2,33 @@ import React, {Component} from "react";
 import './search.css'
 
 export default class Search extends Component {
-    state = {
-        search: ''
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            search: ''
+        }
+
+        this.focusRef = React.createRef();
+    }
+
+    componentDidMount() {
+        this.focusRef.current.focus();
     }
 
     onSearch = (event) => {
+        const {toPutNameToSearch} = this.props;
+
         // получаем данные из импута
         const {value} = event.target;
 
         this.setState({
             search: value
         })
+
+        let type = value;
+        if (value === '') type = 'all';
+        toPutNameToSearch(type)
     }
 
     onPushEnter = (event) => {
@@ -21,9 +37,8 @@ export default class Search extends Component {
         const buttonClick = event.target.nodeName;
 
         const {toSearch} = this.props;
-        const search = this.state.search;
 
-        if (code === 'Enter' || buttonClick === 'BUTTON') toSearch(search);
+        if (code === 'Enter' || buttonClick === 'BUTTON') toSearch();
     }
 
     render() {
@@ -39,6 +54,7 @@ export default class Search extends Component {
                         value={search}
                         onChange={this.onSearch}
                         onKeyDown={this.onPushEnter}
+                        ref={this.focusRef}
                     />
 
                     <button

@@ -1,12 +1,12 @@
-.moviesList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1rem 0;
-}
-
 /*.moviesList {*/
-/*    display: grid;*/
-/*    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));*/
-/*    gap: 1rem;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-between;*/
+/*    padding: 1rem 0;*/
 /*}*/
+
+.moviesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
