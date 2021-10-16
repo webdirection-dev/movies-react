@@ -17,6 +17,7 @@ export default class Radio extends Component {
 
         let type = value;
         if (value === 'all') type = null;
+
         toPutTypeToSearch(type);
     };
 

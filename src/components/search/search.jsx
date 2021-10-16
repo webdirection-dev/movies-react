@@ -28,6 +28,7 @@ export default class Search extends Component {
 
         let type = value;
         if (value === '') type = 'all';
+
         toPutNameToSearch(type)
     }
 

@@ -38,23 +38,48 @@ export default class Main extends Component {
     }
 
     // Записать в state название фильма из строки поиска для формирования запроса get
-    toPutNameToSearch(url=this.state.nameForURL) {
+    toPutNameToSearch(url) {
+        const {typeForURL} = this.state;
+
         this.setState({
             nameForURL: url
         })
+
+        this.dataForMovies(url, typeForURL)
     }
 
+    // toPutNameToSearch(url=this.state.nameForURL) {
+    //     this.setState({
+    //         nameForURL: url
+    //     })
+    // }
+
     // Записать в state тип фильма из строки поиска для формирования запроса get
-    toPutTypeToSearch(type=this.state.typeForURL) {
+    toPutTypeToSearch(type) {
+        const {nameForURL} = this.state;
+
         this.setState({
             typeForURL: type
         })
+
+        this.dataForMovies(nameForURL, type)
     }
+
+    // toPutTypeToSearch(type=this.state.typeForURL) {
+    //     this.setState({
+    //         typeForURL: type
+    //     })
+    // }
 
     toSearch() {
         const {nameForURL, typeForURL} = this.state;
         this.dataForMovies(nameForURL, typeForURL)
     }
+
+    // toSearch() {
+    //     const {nameForURL, typeForURL} = this.state;
+    //     this.dataForMovies(nameForURL, typeForURL)
+    // }
 
     render() {
         const {moviesList} = this.state;
