@@ -1,7 +1,7 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default class MoviesService {
-    _apiBase = `http://www.omdbapi.com/?apikey=${API_KEY}`;
+    _apiBase = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
     async getResource(urlName, urlType) {
         const response = await fetch(`${this._apiBase}&s=${urlName}&type=${urlType}`);

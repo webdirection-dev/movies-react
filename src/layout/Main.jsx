@@ -39,7 +39,13 @@ export default class Main extends Component {
                     moviesList: response.Search
                 })
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+
+                this.setState({
+                    loading: false
+                })
+            });
     }
 
     // Записать в state название фильма из строки поиска для формирования запроса get
