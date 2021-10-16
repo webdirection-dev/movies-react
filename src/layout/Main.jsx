@@ -10,6 +10,7 @@ export default class Main extends Component {
         super(props);
 
         this.state = {
+            loading: true,
             moviesList: null,
             nameForURL: 'all',
             typeForURL: null
@@ -25,6 +26,10 @@ export default class Main extends Component {
     componentDidMount() {
         const {nameForURL, typeForURL} = this.state;
         this.dataForMovies(nameForURL, typeForURL)
+
+        this.setState({
+            loading: false
+        })
     }
 
     dataForMovies = (name, type) => {
@@ -41,6 +46,10 @@ export default class Main extends Component {
     // Берет Тип фильма из State а название из Компонента Search из строки поиска
     // Вызывает функцию dataForMovies для обработки запроса get
     toPutNameToSearch(url) {
+        this.setState({
+            loading: true
+        })
+
         const {typeForURL} = this.state;
 
         this.setState({
@@ -48,12 +57,20 @@ export default class Main extends Component {
         })
 
         this.dataForMovies(url, typeForURL)
+
+        this.setState({
+            loading: false
+        })
     }
 
     // Записать в state тип фильма из строки поиска для формирования запроса get
     // Берет Тип название из State а тип из Компонента Radio из строки поиска
     // Вызывает функцию dataForMovies для обработки запроса get
     toPutTypeToSearch(type) {
+        this.setState({
+            loading: true
+        })
+
         const {nameForURL} = this.state;
 
         this.setState({
@@ -61,23 +78,35 @@ export default class Main extends Component {
         })
 
         this.dataForMovies(nameForURL, type)
+
+        this.setState({
+            loading: false
+        })
     }
 
     // Вызовет dataForMovies при нажатии кнопки Search или нажатии клавиши Enter
     // По сути бесполезный метод тк toPutTypeToSearch и toPutNameToSearch делает это автоматически
     toSearch() {
+        this.setState({
+            loading: true
+        })
+
         const {nameForURL, typeForURL} = this.state;
-        this.dataForMovies(nameForURL, typeForURL)
+        this.dataForMovies(nameForURL, typeForURL);
+
+        this.setState({
+            loading: false
+        })
     }
 
     render() {
-        const {moviesList} = this.state;
+        const {loading, moviesList} = this.state;
 
         return(
             <>
                 <main className='container content'>
                     <div className="main__preloader">
-                        {!moviesList ? <Preloader/> : null}
+                        {loading ? <Preloader/> : null}
                     </div>
 
                     <Forms
@@ -87,7 +116,7 @@ export default class Main extends Component {
                     />
 
                     {
-                        !moviesList ? null : <MoviesList moviesList={moviesList}/>
+                        loading ? <Preloader /> : <MoviesList moviesList={moviesList}/>
                     }
                 </main>
             </>

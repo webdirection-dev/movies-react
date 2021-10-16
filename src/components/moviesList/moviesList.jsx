@@ -5,14 +5,14 @@ import Preloader from "../preloader/preloader";
 
 export default class MoviesList extends Component{
     render() {
-
-        const {moviesList} = this.props;
+        // По умолчанию moviesList = [] для того чтобы отрисовывать <h4>Nothing found</h4>
+        const {moviesList = []} = this.props;
 
         if (!moviesList) return <Preloader/>;
 
         return(
             <div className='moviesList'>
-                {View(moviesList)}
+                {moviesList.length ? View(moviesList) : <h4>Nothing found</h4>}
             </div>
         )
     }
