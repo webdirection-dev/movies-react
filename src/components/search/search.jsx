@@ -13,6 +13,7 @@ export default class Search extends Component {
     }
 
     componentDidMount() {
+        // фокус в строке поиска при отрисовке компонента
         this.focusRef.current.focus();
     }
 
@@ -46,24 +47,35 @@ export default class Search extends Component {
         const {search} = this.state;
 
         return(
-            <div className="row movie__search">
-                <div className="input-field">
-                    <input
-                        className="validate"
-                        placeholder='search'
-                        type="search"
-                        value={search}
-                        onChange={this.onSearch}
-                        onKeyDown={this.onPushEnter}
-                        ref={this.focusRef}
-                    />
-
-                    <button
-                        className='btn search__btn'
-                        onClick={this.onPushEnter}
-                    >Search</button>
-                </div>
-            </div>
+            <View
+                search={search}
+                onSearch={this.onSearch}
+                onPushEnter={this.onPushEnter}
+                focusRef={this.focusRef}
+            />
         )
     }
+}
+
+const View = ({search, onSearch, onPushEnter, focusRef}) => {
+    return(
+        <div className="row movie__search">
+            <div className="input-field">
+                <input
+                    className="validate"
+                    placeholder='search'
+                    type="search"
+                    value={search}
+                    onChange={onSearch}
+                    onKeyDown={onPushEnter}
+                    ref={focusRef}
+                />
+
+                <button
+                    className='btn search__btn'
+                    onClick={onPushEnter}
+                >Search</button>
+            </div>
+        </div>
+    )
 }

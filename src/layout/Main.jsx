@@ -38,6 +38,8 @@ export default class Main extends Component {
     }
 
     // Записать в state название фильма из строки поиска для формирования запроса get
+    // Берет Тип фильма из State а название из Компонента Search из строки поиска
+    // Вызывает функцию dataForMovies для обработки запроса get
     toPutNameToSearch(url) {
         const {typeForURL} = this.state;
 
@@ -48,13 +50,9 @@ export default class Main extends Component {
         this.dataForMovies(url, typeForURL)
     }
 
-    // toPutNameToSearch(url=this.state.nameForURL) {
-    //     this.setState({
-    //         nameForURL: url
-    //     })
-    // }
-
     // Записать в state тип фильма из строки поиска для формирования запроса get
+    // Берет Тип название из State а тип из Компонента Radio из строки поиска
+    // Вызывает функцию dataForMovies для обработки запроса get
     toPutTypeToSearch(type) {
         const {nameForURL} = this.state;
 
@@ -65,21 +63,12 @@ export default class Main extends Component {
         this.dataForMovies(nameForURL, type)
     }
 
-    // toPutTypeToSearch(type=this.state.typeForURL) {
-    //     this.setState({
-    //         typeForURL: type
-    //     })
-    // }
-
+    // Вызовет dataForMovies при нажатии кнопки Search или нажатии клавиши Enter
+    // По сути бесполезный метод тк toPutTypeToSearch и toPutNameToSearch делает это автоматически
     toSearch() {
         const {nameForURL, typeForURL} = this.state;
         this.dataForMovies(nameForURL, typeForURL)
     }
-
-    // toSearch() {
-    //     const {nameForURL, typeForURL} = this.state;
-    //     this.dataForMovies(nameForURL, typeForURL)
-    // }
 
     render() {
         const {moviesList} = this.state;
